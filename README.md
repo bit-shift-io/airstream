@@ -6,9 +6,9 @@ Developed by Fabian Mathews (supagu@gmail.com). A Webserver that serves temparat
 Install
 ============
 
-To install requirements:
+To install on Armbian:
 
-    sudo pip3 install -r requirements.txt
+    ./install.sh
 
 
 To start web server + temp monitor:
