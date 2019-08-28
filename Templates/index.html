@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>Sensor Log</title>
+  </head>
+  <body>
+    <p>Sensor history:</p>
+    <ul>
+      %for sensor in history:
+      <li>${sensor}: ${history[sensor]}</li>
+      %endfor
+    </ul>
+  </body>
+</html>
