@@ -5,7 +5,7 @@ from server import Server
 from temp import *
 import _thread
 
-HOST_NAME = 'localhost'
+HOST_NAME = '0.0.0.0'
 PORT_NUMBER = 8000
 
 if __name__ == '__main__':

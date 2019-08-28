@@ -6,7 +6,7 @@ Developed by Fabian Mathews (supagu@gmail.com). A Webserver that serves temparat
 Install
 ============
 
-To install on Armbian:
+To install on Armbian Buster (Debian):
 
     ./install.sh
 
