@@ -88,15 +88,7 @@
 					backgroundColor: color(window.chartColors.green).alpha(0.5).rgbString(),
 					borderColor: window.chartColors.green,
 					fill: false,
-					data: [
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor()
-					],
+					data: ${history[sensor]},
 				}]
 			},
 			options: {

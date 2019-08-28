@@ -25,18 +25,20 @@ os.system('modprobe w1-therm')
 tempSensorPathArray = {
   "eff": "/sys/bus/w1/devices/28-031504994eff/w1_slave",
   "3ff": "/sys/bus/w1/devices/28-0115154e93ff/w1_slave",
-  "dff": "/sys/bus/w1/devices/28-031504c68dff/w1_slave"
+  "dff": "/sys/bus/w1/devices/28-031504c68dff/w1_slave",
+  "cpu": "/sys/devices/virtual/thermal/thermal_zone0/temp"
 }
 
 history = {
   "eff": [0, 2, 3],
   "3ff": [2, 2, 2],
-  "dff": [0, 0, 0]
+  "dff": [0, 0, 0],
+  "cpu": []
 }
 
 history_length = 10
 
-sleep_time_sec = 30
+sleep_time_sec = 1
   
 def temp_raw(tempSensorName):
     f = open(tempSensorPathArray[tempSensorName], 'r')
@@ -57,15 +59,25 @@ def read_temp(tempSensorName):
         temp_c = float(temp_string) / 1000.0
         return temp_c
 
+def read_cpu_temp(tempSensorName):
+  lines = temp_raw(tempSensorName)
+  value = int(lines[-1]) / 1000.0
+  #print(value)
+  return value
 
 def poll_temps_foreever():
   while True:
     for tempSensor in tempSensorPathArray:
       try:
-        history[tempSensor].append(read_temp(tempSensor))
+        if (tempSensor == "cpu"):
+          history[tempSensor].append(read_cpu_temp(tempSensor))
+        else:
+          history[tempSensor].append(read_temp(tempSensor))
+
         del history[tempSensor][history_length:] # clip history to a certain length
       except:
-        print("Err with sensor: " + tempSensor)
+        #print("Err with sensor: " + tempSensor)
+        pass
 
     time.sleep(sleep_time_sec)
          
